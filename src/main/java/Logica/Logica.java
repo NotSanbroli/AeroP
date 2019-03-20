@@ -7,6 +7,9 @@ package Logica;
 
 
 import Utilitarios.Avion;
+import Utilitarios.AvionEco;
+import Utilitarios.AvionMix;
+import Utilitarios.AvionVip;
 import Utilitarios.Cliente;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,11 +26,30 @@ import java.util.logging.Logger;
  * @author Darkgrey93
  */
 public class Logica {
-    Map<Integer,Avion> aviones=new HashMap<Integer,Avion>();
-    Map<Integer,Cliente> clientes=new HashMap<Integer,Cliente>();
+    Map<Integer,Avion> aviones;
+    Map<Integer,Cliente> clientes;
     public static BufferedReader entrada=new BufferedReader(new InputStreamReader(System.in));
-    Avion avionVip=new Avion("VIP");
+    //Avion avionVip=new Avion("VIP");
     
+    AvionVip avip=new AvionVip("AvionVip");
+    AvionMix amix=new AvionMix("AvionMix");
+    AvionEco aeco=new AvionEco("AvionEco");
+
+    public Logica() {
+        aviones=new HashMap<Integer,Avion>();
+        clientes=new HashMap<Integer,Cliente>();
+        
+        aviones.put(1, avip);
+        aviones.put(2, amix);
+        aviones.put(3, aeco);
+        /*if(avip.getSillas().containsKey("A1")){
+            if(avip.getSillas().get("A1").isComprada()){
+            
+        }
+                    
+        }*/
+                
+    }    
     
     public void agregarClientes(){
         System.out.println("Digite la informacion para agregar el cliente");

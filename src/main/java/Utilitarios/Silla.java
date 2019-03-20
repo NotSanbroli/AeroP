@@ -12,12 +12,13 @@ package Utilitarios;
 public class Silla {
     
     private double valor=100;
-    private boolean vip=false;
+    private boolean vip;
     private boolean comprada=false;
     private String nombre;
     private Cliente persona;
 
-    public Silla(String nombre) {
+    public Silla(String nombre, Boolean vip) {
+        this.vip=vip;
         this.nombre = nombre;
     }
 
