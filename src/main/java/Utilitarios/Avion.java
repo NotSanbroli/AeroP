@@ -5,10 +5,22 @@
  */
 package Utilitarios;
 
+import java.util.HashMap;
+
 /**
  *
  * @author fetec
  */
 public class Avion {
+    
+    private String nombre;
+    HashMap<Integer,Silla> sillas;
+    private boolean volando=false;
+
+    public Avion(String nombre) {
+        this.nombre = nombre;
+        sillas=new HashMap();
+    }
+    
     
 }
