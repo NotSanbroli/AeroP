@@ -5,6 +5,7 @@
  */
 package Utilitarios;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -13,10 +14,10 @@ import java.util.Date;
  */
 public class Cliente {
     private String nombre;
-    private int cedula;
-    private Date fechaNacimiento;
+    private Integer cedula;
+    private SimpleDateFormat  fechaNacimiento;
 
-    public Cliente(String nombre, int cedula, Date fechaNacimiento) {
+    public Cliente(String nombre, int cedula, SimpleDateFormat  fechaNacimiento) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.fechaNacimiento = fechaNacimiento;
