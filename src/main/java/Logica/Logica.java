@@ -5,7 +5,9 @@
  */
 package Logica;
 
-import Utilitarios.*;
+
+import Utilitarios.Avion;
+import Utilitarios.Cliente;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +17,11 @@ import java.util.Map;
  */
 public class Logica {
     Map<Integer,Avion> aviones=new HashMap<Integer,Avion>();
-    Map<Integer,Persona> clientes=new HashMap<Integer,Persona>();
-    Avion avionVip=new Avion();
+    Map<Integer,Cliente> clientes=new HashMap<Integer,Cliente>();
+    Avion avionVip=new Avion("VIP");
     
     
-    Public void agregarClientes(){
+    public void agregarClientes(){
         System.out.println("Digite la informacion para agregar el cliente");
     }
     

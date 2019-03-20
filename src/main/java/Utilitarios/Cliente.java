@@ -9,15 +9,14 @@ import java.util.Date;
 
 /**
  *
- * @author fetec
+ * @author Darkgrey93
  */
-class Persona {
-    
+public class Cliente {
     private String nombre;
     private int cedula;
     private Date fechaNacimiento;
 
-    public Persona(String nombre, int cedula, Date fechaNacimiento) {
+    public Cliente(String nombre, int cedula, Date fechaNacimiento) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.fechaNacimiento = fechaNacimiento;
@@ -35,19 +34,4 @@ class Persona {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
-        this.cedula = cedula;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    
-    
-    
 }

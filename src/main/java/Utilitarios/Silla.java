@@ -15,7 +15,7 @@ public class Silla {
     private boolean vip=false;
     private boolean comprada=false;
     private String nombre;
-    private Persona persona;
+    private Cliente persona;
 
     public Silla(String nombre) {
         this.nombre = nombre;
@@ -53,11 +53,11 @@ public class Silla {
         this.nombre = nombre;
     }
 
-    public Persona getPersona() {
+    public Cliente getPersona() {
         return persona;
     }
 
-    public void setPersona(Persona persona) {
+    public void setPersona(Cliente persona) {
         this.persona = persona;
     }
     
