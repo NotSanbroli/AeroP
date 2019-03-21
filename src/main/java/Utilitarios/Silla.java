@@ -22,9 +22,6 @@ public class Silla {
         this.nombre = nombre;
     }
 
-
-
-
     public double getValor() {
         return valor;
     }
