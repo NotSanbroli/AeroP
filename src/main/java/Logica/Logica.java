@@ -41,7 +41,7 @@ public class Logica {
     AvionEco aeco=new AvionEco("AvionEco");
     
     int i=0;
-    String puesto=" ";
+    String puesto="              ";
 
 
     public Logica() throws IOException {
@@ -149,7 +149,7 @@ public class Logica {
         String silla="";
         System.out.println("Digite la silla que desea ocupar el cliente\n");
         try{
-           silla=entrada.readLine();
+           silla=entrada.readLine().toUpperCase();
          }catch(Exception ex){
              System.out.println(ex);
          }
@@ -173,10 +173,14 @@ public class Logica {
         Cliente comprador = clientes.get(id);
         if(!aeco.getSillas().containsKey(code)){
             System.out.println("silla no encotrada intente con otra");
+        }if(aeco.getSillas().containsKey(code)){
+            if(!aeco.getSillas().get(code).isComprada()){
+                aeco.getSillas().get(code).setPersona(comprador);
+                aeco.getSillas().get(code).setComprada(true);                
+            }else{                
+                System.out.println("esta silla ya esta ocupada, elija otra");
+            }
         }
-            
-        aeco.getSillas().get(code).setPersona(comprador);
-        aeco.getSillas().get(code).setComprada(true);
     }
     public void comprarSillaVip(String code,Integer id){
         if(!clientes.containsKey(id)){
@@ -187,9 +191,14 @@ public class Logica {
         if(!avip.getSillas().containsKey(code)){
             System.out.println("silla no encotrada intente con otra");
         }
-            
-        avip.getSillas().get(code).setPersona(comprador);
-        avip.getSillas().get(code).setComprada(true);
+        if(avip.getSillas().containsKey(code)){
+            if(!avip.getSillas().get(code).isComprada()){
+                avip.getSillas().get(code).setPersona(comprador);
+                avip.getSillas().get(code).setComprada(true);                
+            }else{                
+                System.out.println("esta silla ya esta ocupada, elija otra");
+            }
+        }
     }
     public void comprarSillaMix(String code,Integer id){
         if(!clientes.containsKey(id)){
@@ -199,10 +208,14 @@ public class Logica {
         Cliente comprador = clientes.get(id);
         if(!amix.getSillas().containsKey(code)){
             System.out.println("silla no encotrada intente con otra");
+        }if(amix.getSillas().containsKey(code)){
+            if(!amix.getSillas().get(code).isComprada()){
+                amix.getSillas().get(code).setPersona(comprador);
+                amix.getSillas().get(code).setComprada(true);                
+            }else{                
+                System.out.println("esta silla ya esta ocupada, elija otra");
+            }
         }
-            
-        amix.getSillas().get(code).setPersona(comprador);
-        amix.getSillas().get(code).setComprada(true);
     }
     
     public void agregarClientes(){
@@ -239,18 +252,19 @@ public class Logica {
         
         Map<String, Silla> treeMap = new TreeMap<String, Silla>(amix.getSillas());
         Set<String> llaves = treeMap.keySet();
-        System.out.println("      /\\");
-        System.out.println("     /  \\");
-        System.out.println("    /    \\");
-        System.out.println("   /      \\");
-        System.out.println("  /        \\");
-        System.out.println(" /          \\");
-        System.out.println("/____________\\");
-        System.out.println("|             |");
+        System.out.println("                   /\\");
+        System.out.println("                  /  \\");
+        System.out.println("                 /    \\");
+        System.out.println("                /      \\");
+        System.out.println("               /        \\");
+        System.out.println("              /          \\");
+        System.out.println("             /            \\");
+        System.out.println("            /______________\\");
+        System.out.println("            |               |");
         
         for(String llav : llaves){
-        if(treeMap.get(llav).isComprada()){
-            treeMap.get(llav).setNombre("XX");
+            if(treeMap.get(llav).isComprada()){
+                treeMap.get(llav).setNombre("XX");
             }
         }
         
@@ -260,61 +274,62 @@ public class Logica {
                 System.out.print(puesto);
                 i++;
                 if(i==1){
-                puesto=" ";
+                    puesto=" ";
                 }
                 if(i>1){
                     System.out.println();
                     i=0;
-                    puesto=" ";
-            }
+                    puesto="              ";
+                }
             }
            
         }
         
-        System.out.println("|              |___________");
-        System.out.println("|              |           \\");
-        System.out.println("|              |___________/");
+        System.out.println(" ___________|               |___________");
+        System.out.println("/           |               |           \\");
+        System.out.println("\\___________|               |___________/");
         for(String llav : llaves){
             if(treeMap.get(llav).isVip()){
                 
             }
             else{
-            puesto+=treeMap.get(llav).getNombre();
+                puesto+=treeMap.get(llav).getNombre();
                 System.out.print(puesto);
                 i++;
                 puesto="";
                 if(i==3){
-                puesto=" ";
+                    puesto=" ";
                 }
                 if(i>5){
                     System.out.println();
                     i=0;
-                    puesto=" ";
-            }
+                    puesto="              ";
+                }
             }
            
         }
-        System.out.println("\n|              |");
-        System.out.println("|              |");
+        System.out.println("\n            |               |");
+        System.out.println("            |               |");
     }
 
     private void imprimirAvionVip() {
          Map<String, Silla> treeMap = new TreeMap<String, Silla>(avip.getSillas());
         Set<String> llaves = treeMap.keySet();
-        System.out.println("      /\\");
-        System.out.println("     /  \\");
-        System.out.println("    /    \\");
-        System.out.println("   /      \\");
-        System.out.println("  /        \\");
-        System.out.println(" /          \\");
-        System.out.println("/____________\\");
-        System.out.println("|             |");
-        System.out.println("|              |___________");
-        System.out.println("|              |           \\");
-        System.out.println("|              |___________/");
+        System.out.println("                   /\\");
+        System.out.println("                  /  \\");
+        System.out.println("                 /    \\");
+        System.out.println("                /      \\");
+        System.out.println("               /        \\");
+        System.out.println("              /          \\");
+        System.out.println("             /            \\");
+        System.out.println("            /______________\\");
+        System.out.println("            |               |");
+        System.out.println(" ___________|               |___________");
+        System.out.println("/           |               |           \\");
+        System.out.println("\\___________|               |___________/");
         for(String llav : llaves){
-        if(treeMap.get(llav).isComprada()){
-            treeMap.get(llav).setNombre("XX");
+            if(treeMap.get(llav).isComprada()){
+                treeMap.get(llav).setNombre("XX");
             }
         }
         
@@ -324,37 +339,38 @@ public class Logica {
                 System.out.print(puesto);
                 i++;
                 if(i==1){
-                puesto=" ";
+                    puesto=" ";
                 }
                 if(i>1){
                     System.out.println();
                     i=0;
-                    puesto=" ";
-            }
+                    puesto="              ";
+                }
             }
            
         }
-        System.out.println("\n|              |");
-        System.out.println("|              |");
+        System.out.println("\n            |               |");
+        System.out.println("            |               |");
     }
 
     private void imprimirAvionEco() {
       Map<String, Silla> treeMap = new TreeMap<String, Silla>(aeco.getSillas());
         Set<String> llaves = treeMap.keySet();
-        System.out.println("      /\\");
-        System.out.println("     /  \\");
-        System.out.println("    /    \\");
-        System.out.println("   /      \\");
-        System.out.println("  /        \\");
-        System.out.println(" /          \\");
-        System.out.println("/____________\\");
-        System.out.println("|             |");
-        System.out.println("|              |___________");
-        System.out.println("|              |           \\");
-        System.out.println("|              |___________/");
+        System.out.println("                   /\\");
+        System.out.println("                  /  \\");
+        System.out.println("                 /    \\");
+        System.out.println("                /      \\");
+        System.out.println("               /        \\");
+        System.out.println("              /          \\");
+        System.out.println("             /            \\");
+        System.out.println("            /______________\\");
+        System.out.println("            |               |");
+        System.out.println(" ___________|               |___________");
+        System.out.println("/           |               |           \\");
+        System.out.println("\\___________|               |___________/");
         for(String llav : llaves){
-        if(treeMap.get(llav).isComprada()){
-            treeMap.get(llav).setNombre("XX");
+            if(treeMap.get(llav).isComprada()){
+                treeMap.get(llav).setNombre("XX");
             }
         }
         for(String llav : llaves){
@@ -362,21 +378,21 @@ public class Logica {
                 
             }
             else{
-            puesto+=treeMap.get(llav).getNombre();
+                puesto+=treeMap.get(llav).getNombre();
                 System.out.print(puesto);
                 i++;
                 puesto="";
                 if(i==3){
-                puesto=" ";
+                    puesto=" ";
                 }
                 if(i>5){
                     System.out.println();
                     i=0;
-                    puesto=" ";
-            }
+                    puesto="              ";
+                }
             }
         }
-        System.out.println("\n|              |");
-        System.out.println("|              |");
+         System.out.println("\n            |               |");
+        System.out.println("            |               |");
     }
 }
