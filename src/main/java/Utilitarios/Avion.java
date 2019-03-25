@@ -46,7 +46,11 @@ public abstract class Avion {
     public void setVolando(boolean volando) {
         this.volando = volando;
     }
-    
+    /**
+     * @author Victor Pardo
+     *Esta funcion calcula cuando pasa  a estado volando el valor total de silla vendidas
+     * 
+     */
     public double calcularVuelo(){
         double total=0;
         for (Map.Entry<String, Silla> entry : sillas.entrySet()) {

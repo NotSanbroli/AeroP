@@ -63,7 +63,11 @@ public class Logica {
         menuAviones();
                 
     }  
-    
+    /**
+     * @author Victor Pardo
+     * Esta funcion sirve para mostrar el menu general de la aplicacion
+     * 
+     */
     public void menuAviones() {
     System.out.print("Que avion desea comprar?\n"+"Avion Vip 1.\n"
             + "Avion Mixto 2.\n"
@@ -143,7 +147,12 @@ public class Logica {
             menuAviones();
             }
     
-    
+    /**
+     * @author Victor Pardo
+     * Esta funcion sirve para recoger los datos por consola de la silla que se quiere comprar
+     * devuelve un estring con la direccion digitada.
+     * 
+     */
     }
     public String recogerSilla(){
         String silla="";
@@ -155,6 +164,13 @@ public class Logica {
          }
         return silla;
     }
+    /**
+     * @author Victor Pardo
+     * Esta funcion sirve para recoger los datos por consola del usuario que hara la  compra 
+     * devuelve un Integer con la el numero de identificacion de lo comprado.
+     * 
+     */
+    
     public Integer recogerUsuario(){
         Integer cedula=0;
         System.out.println("Digite la identificacion del cliente\n");
@@ -165,6 +181,13 @@ public class Logica {
          }
         return cedula;
     }
+    /**
+     * @author Victor Pardo
+     * Esta funcion recibe el codigo de la silla a comprar y el usuario que al que se le asignara la silla
+     * del avion  hay 3 funciones dependiendo del tipo de avion que elija no devuelve nada.
+     * 
+     */
+    
     public void comprarSillaEco(String code,Integer id){
         if(!clientes.containsKey(id)){
             System.out.println("No existe el cliente con la identificacion: "+id);
@@ -182,6 +205,12 @@ public class Logica {
             }
         }
     }
+    /**
+     * @author Victor Pardo
+     * Esta funcion recibe el codigo de la silla a comprar y el usuario que al que se le asignara la silla
+     * del avion  hay 3 funciones dependiendo del tipo de avion que elija no devuelve nada.
+     * 
+     */
     public void comprarSillaVip(String code,Integer id){
         if(!clientes.containsKey(id)){
             System.out.println("No existe el cliente con la identificacion: "+id);
@@ -200,6 +229,12 @@ public class Logica {
             }
         }
     }
+    /**
+     * @author Victor Pardo
+     * Esta funcion recibe el codigo de la silla a comprar y el usuario que al que se le asignara la silla
+     * del avion  hay 3 funciones dependiendo del tipo de avion que elija no devuelve nada.
+     * 
+     */
     public void comprarSillaMix(String code,Integer id){
         if(!clientes.containsKey(id)){
             System.out.println("No existe el cliente con la identificacion: "+id);
@@ -217,7 +252,11 @@ public class Logica {
             }
         }
     }
-    
+    /**
+     * @author Victor Pardo
+     * Esta funcion agrega un  nuevo cliente en el mapa que se maneja en la funcion general logica
+     * 
+     */
     public void agregarClientes(){
         System.out.println("Digite la informacion para agregar el cliente");
         System.out.println("Digite el nombre del cliente");
@@ -362,7 +401,7 @@ public class Logica {
         System.out.println("                /      \\");
         System.out.println("               /        \\");
         System.out.println("              /          \\");
-        System.out.println("             /            \\");
+        System.out.println("             /  Airline   \\");
         System.out.println("            /______________\\");
         System.out.println("            |               |");
         System.out.println(" ___________|               |___________");
