@@ -41,7 +41,7 @@ public class Logica {
     AvionEco aeco=new AvionEco("AvionEco");
     
     int i=0;
-    String puesto=" ";
+    String puesto="              ";
 
 
     public Logica() throws IOException {
@@ -229,14 +229,15 @@ public class Logica {
         
         Map<String, Silla> treeMap = new TreeMap<String, Silla>(amix.getSillas());
         Set<String> llaves = treeMap.keySet();
-        System.out.println("      /\\");
-        System.out.println("     /  \\");
-        System.out.println("    /    \\");
-        System.out.println("   /      \\");
-        System.out.println("  /        \\");
-        System.out.println(" /          \\");
-        System.out.println("/____________\\");
-        System.out.println("|             |");
+        System.out.println("                   /\\");
+        System.out.println("                  /  \\");
+        System.out.println("                 /    \\");
+        System.out.println("                /      \\");
+        System.out.println("               /        \\");
+        System.out.println("              /          \\");
+        System.out.println("             /            \\");
+        System.out.println("            /______________\\");
+        System.out.println("            |               |");
         
         for(String llav : llaves){
             if(treeMap.get(llav).isComprada()){
@@ -255,15 +256,15 @@ public class Logica {
                 if(i>1){
                     System.out.println();
                     i=0;
-                    puesto=" ";
+                    puesto="              ";
                 }
             }
            
         }
         
-        System.out.println("|              |___________");
-        System.out.println("|              |           \\");
-        System.out.println("|              |___________/");
+        System.out.println(" ___________|               |___________");
+        System.out.println("/           |               |           \\");
+        System.out.println("\\___________|               |___________/");
         for(String llav : llaves){
             if(treeMap.get(llav).isVip()){
                 
@@ -279,29 +280,30 @@ public class Logica {
                 if(i>5){
                     System.out.println();
                     i=0;
-                    puesto=" ";
+                    puesto="              ";
                 }
             }
            
         }
-        System.out.println("\n|              |");
-        System.out.println("|              |");
+        System.out.println("\n            |               |");
+        System.out.println("            |               |");
     }
 
     private void imprimirAvionVip() {
          Map<String, Silla> treeMap = new TreeMap<String, Silla>(avip.getSillas());
         Set<String> llaves = treeMap.keySet();
-        System.out.println("      /\\");
-        System.out.println("     /  \\");
-        System.out.println("    /    \\");
-        System.out.println("   /      \\");
-        System.out.println("  /        \\");
-        System.out.println(" /          \\");
-        System.out.println("/____________\\");
-        System.out.println("|             |");
-        System.out.println("|              |___________");
-        System.out.println("|              |           \\");
-        System.out.println("|              |___________/");
+        System.out.println("                   /\\");
+        System.out.println("                  /  \\");
+        System.out.println("                 /    \\");
+        System.out.println("                /      \\");
+        System.out.println("               /        \\");
+        System.out.println("              /          \\");
+        System.out.println("             /            \\");
+        System.out.println("            /______________\\");
+        System.out.println("            |               |");
+        System.out.println(" ___________|               |___________");
+        System.out.println("/           |               |           \\");
+        System.out.println("\\___________|               |___________/");
         for(String llav : llaves){
             if(treeMap.get(llav).isComprada()){
                 treeMap.get(llav).setNombre("XX");
@@ -319,29 +321,30 @@ public class Logica {
                 if(i>1){
                     System.out.println();
                     i=0;
-                    puesto=" ";
+                    puesto="              ";
                 }
             }
            
         }
-        System.out.println("\n|              |");
-        System.out.println("|              |");
+        System.out.println("\n            |               |");
+        System.out.println("            |               |");
     }
 
     private void imprimirAvionEco() {
       Map<String, Silla> treeMap = new TreeMap<String, Silla>(aeco.getSillas());
         Set<String> llaves = treeMap.keySet();
-        System.out.println("      /\\");
-        System.out.println("     /  \\");
-        System.out.println("    /    \\");
-        System.out.println("   /      \\");
-        System.out.println("  /        \\");
-        System.out.println(" /          \\");
-        System.out.println("/____________\\");
-        System.out.println("|             |");
-        System.out.println("|              |___________");
-        System.out.println("|              |           \\");
-        System.out.println("|              |___________/");
+        System.out.println("                   /\\");
+        System.out.println("                  /  \\");
+        System.out.println("                 /    \\");
+        System.out.println("                /      \\");
+        System.out.println("               /        \\");
+        System.out.println("              /          \\");
+        System.out.println("             /            \\");
+        System.out.println("            /______________\\");
+        System.out.println("            |               |");
+        System.out.println(" ___________|               |___________");
+        System.out.println("/           |               |           \\");
+        System.out.println("\\___________|               |___________/");
         for(String llav : llaves){
             if(treeMap.get(llav).isComprada()){
                 treeMap.get(llav).setNombre("XX");
@@ -362,11 +365,11 @@ public class Logica {
                 if(i>5){
                     System.out.println();
                     i=0;
-                    puesto=" ";
+                    puesto="              ";
                 }
             }
         }
-        System.out.println("\n|              |");
-        System.out.println("|              |");
+         System.out.println("\n            |               |");
+        System.out.println("            |               |");
     }
 }
