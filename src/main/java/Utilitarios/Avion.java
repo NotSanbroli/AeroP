@@ -53,7 +53,7 @@ public abstract class Avion {
             String key = entry.getKey();
             Silla value = entry.getValue();
             if(value.isComprada()==true){
-                total=value.getValor();
+                total+=value.getValor();
             }
             
         }
