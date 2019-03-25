@@ -52,7 +52,9 @@ public abstract class Avion {
         for (Map.Entry<String, Silla> entry : sillas.entrySet()) {
             String key = entry.getKey();
             Silla value = entry.getValue();
-            total=value.getValor();
+            if(value.isComprada()==true){
+                total=value.getValor();
+            }
             
         }
         return total;

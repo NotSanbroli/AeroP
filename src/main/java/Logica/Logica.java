@@ -69,6 +69,7 @@ public class Logica {
             + "Avion Mixto 2.\n"
             + "Avion Economico 3.\n"
             +"Despegar aviones 4.\n"
+            + "Agregar cliente 5.\n"
             + "Salir 0.\n");
     Integer cedula=0;
     String silla="";
@@ -97,9 +98,14 @@ public class Logica {
             menuAviones();
             break;
         case 4:
-            System.out.println("avion vip\n"+avip.calcularVuelo()+"\n");
-            System.out.println("avion mixto\n"+amix.calcularVuelo()+"\n");
-            System.out.println("avion economico\n"+aeco.calcularVuelo()+"\n");
+            System.out.println("avion vip vendio\n"+avip.calcularVuelo()+"\n");
+            System.out.println("avion mixto vendio\n"+amix.calcularVuelo()+"\n");
+            System.out.println("avion economico vendio\n"+aeco.calcularVuelo()+"\n");
+            System.exit(0);
+            break;
+        case 5:
+            agregarClientes();
+            menuAviones();
             break;
         case 0:
             System.out.println("terminando programa...");
