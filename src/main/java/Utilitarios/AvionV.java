@@ -9,9 +9,9 @@ package Utilitarios;
  *
  * @author fetec
  */
-public class AvionVip extends Avion{
+public class AvionV extends Avion{
 
-    public AvionVip(String nombre) {
+    public AvionV(String nombre) {
         super(nombre);
         sillas.put("A1", new Silla("A1",true));
         sillas.put("A2", new Silla("A2",true));

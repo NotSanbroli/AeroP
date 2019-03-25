@@ -10,13 +10,13 @@ import java.util.Map;
 
 /**
  *
- * @author fetec
+ * @author Familia
  */
 public abstract class Avion {
     
     private String nombre;
     HashMap<String,Silla> sillas;
-    private boolean volando=false;
+    private boolean despegado=false;
 
     public Avion(String nombre) {
         this.nombre = nombre;
@@ -39,16 +39,16 @@ public abstract class Avion {
         this.sillas = sillas;
     }
 
-    public boolean isVolando() {
-        return volando;
+    public boolean isDespegado() {
+        return despegado;
     }
 
-    public void setVolando(boolean volando) {
-        this.volando = volando;
+    public void setDespegado(boolean despegado) {
+        this.despegado = despegado;
     }
     /**
      * @author Victor Pardo
-     *Esta funcion calcula cuando pasa  a estado volando el valor total de silla vendidas
+Esta funcion calcula cuando pasa  a estado despegado el valor total de silla vendidas
      * 
      */
     public double calcularVuelo(){
@@ -56,8 +56,8 @@ public abstract class Avion {
         for (Map.Entry<String, Silla> entry : sillas.entrySet()) {
             String key = entry.getKey();
             Silla value = entry.getValue();
-            if(value.isComprada()==true){
-                total+=value.getValor();
+            if(value.isOcupada()==true){
+                total+=value.getPrecio();
             }
             
         }

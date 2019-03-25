@@ -7,10 +7,10 @@ package Logica;
 
 
 import Utilitarios.Avion;
-import Utilitarios.AvionEco;
-import Utilitarios.AvionMix;
-import Utilitarios.AvionVip;
-import Utilitarios.Cliente;
+import Utilitarios.AvionB;
+import Utilitarios.AvionG;
+import Utilitarios.AvionV;
+import Utilitarios.Persona;
 
 import Utilitarios.Silla;
 import java.io.BufferedReader;
@@ -28,135 +28,105 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Darkgrey93
+ * @author Familia
  */
 public class Logica {
-    Map<Integer,Avion> aviones;
-    Map<Integer,Cliente> clientes;
+
+    Map<Integer,Persona> personas;
     public static BufferedReader entrada=new BufferedReader(new InputStreamReader(System.in));
-    //Avion avionVip=new Avion("VIP");
-    
-    AvionVip avip=new AvionVip("AvionVip");
-    AvionMix amix=new AvionMix("AvionMix");
-    AvionEco aeco=new AvionEco("AvionEco");
+    AvionV aVip=new AvionV("AvionVip");
+    AvionG aGr=new AvionG("AvionGrande");
+    AvionB APq=new AvionB("AvionPequeño");
     
     int i=0;
     String puesto="              ";
 
 
     public Logica() throws IOException {
-        aviones=new HashMap<Integer,Avion>();
-        clientes=new HashMap<Integer,Cliente>();
-        aviones.put(1, avip);
-        aviones.put(2, amix);
-        aviones.put(3, aeco);
-        /*avip.getSillas().get("A1").setComprada(true);
-        aeco.getSillas().get("C1").setComprada(true);
-        amix.getSillas().get("F1").setComprada(true);
-        avip.getSillas().get("A2").setComprada(true); pruebas para ocupar sillas
-        amix.getSillas().get("C5").setComprada(true);
-        aeco.getSillas().get("F4").setComprada(true);*/
-            
-        
-                    
-        
-        menuAviones();
+        personas=new HashMap<Integer,Persona>();
+        menu();
                 
     }  
     /**
-     * @author Victor Pardo
-     * Esta funcion sirve para mostrar el menu general de la aplicacion
+     * @author Familia
+     * 
      * 
      */
-    public void menuAviones() {
-    System.out.print("Que avion desea comprar?\n"+"Avion Vip 1.\n"
-            + "Avion Mixto 2.\n"
-            + "Avion Economico 3.\n"
-            +"Despegar avion vip 4.\n"
-            + "Despegar avion mixto 5.\n"
-            + "Despegar avion economico 6.\n"
-            + "Agregar cliente 7.\n"
+    public void menu() {
+    System.out.print("Que avion a comprar?\n"+"Avion Vip 1.\n"
+            + "Avion Grande 2.\n"
+            + "Avion Pequeño 3.\n"
+            +"Despegar avion 4.\n"
+            + "Agregar cliente 5.\n"
             + "Salir 0.\n");
-    Integer cedula=0;
+    Integer id=0;
     String silla="";
     try{
     int opcion=Integer.parseInt(entrada.readLine());
     switch(opcion){
         case 1:
-            if(!avip.isVolando()==true){
+            if(!aVip.isDespegado()==true){
                 imprimirAvionVip();
-                cedula=recogerUsuario();
-                silla=recogerSilla();
-                comprarSillaVip(silla, cedula);
+                id=leerUsuario();
+                silla=leerSilla();
+                comprarSillaVip(silla, id);
             }else{
-                System.out.println("lo sentimos avion en vuelo");
+                System.out.println("El avion ya despego");
             }
-            menuAviones();
+            menu();
             break;
         case 2:
-            if(!amix.isVolando()==true){
-                imprimirAvionMixto();
-                cedula=recogerUsuario();
-                silla=recogerSilla();
-                comprarSillaMix(silla, cedula);
+            if(!aGr.isDespegado()==true){
+                imprimirAvionG();
+                id=leerUsuario();
+                silla=leerSilla();
+                comprarSillaG(silla, id);
             }else{
-                System.out.println("lo sentimos avion en vuelo");
+                System.out.println("El avion ya despego");
             }
-            menuAviones();
+            menu();
             break;
         case 3:
-            if(!aeco.isVolando()==true){
-                imprimirAvionEco();
-                cedula=recogerUsuario();
-                silla=recogerSilla();
-                comprarSillaEco(silla, cedula);
+            if(!APq.isDespegado()==true){
+                imprimirAvionB();
+                id=leerUsuario();
+                silla=leerSilla();
+                comprarSillaB(silla, id);
             }else{
-                System.out.println("lo sentimos avion en vuelo");
+                System.out.println("El avion ya despego");
             }
-            menuAviones();
+            menu();
             break;
         case 4:
-            System.out.println("avion vip vendio\n"+avip.calcularVuelo()+"\n");
-            avip.setVolando(true);
-            menuAviones();
+           menuDespegados();
+            menu();
             break;
         case 5:
-            System.out.println("avion mixto vendio\n"+amix.calcularVuelo()+"\n");
-            amix.setVolando(true);
-            menuAviones();
-            break;
-        case 6:
-            System.out.println("avion economico vendio\n"+aeco.calcularVuelo()+"\n");
-            aeco.setVolando(true);
-            menuAviones();
-            break;
-        case 7:
-            agregarClientes();
-            menuAviones();
+            agregarPasajeros();
+            menu();
             break;
         case 0:
             System.out.println("terminando programa...");
             System.exit(0);
              break;
         default:
-            System.out.println("Opcion incorrecta intente otra vez");
-            menuAviones();
+            System.out.println("Opcion incorrecta");
+            menu();
     }
     }catch(Exception ex){
             System.out.println("Escriba un numero");
-            menuAviones();
+            menu();
             }
     
     /**
-     * @author Victor Pardo
-     * Esta funcion sirve para recoger los datos por consola de la silla que se quiere comprar
-     * devuelve un estring con la direccion digitada.
+     * @author Familia
+     * 
      * 
      */
     }
-    public String recogerSilla(){
+    public String leerSilla(){
         String silla="";
-        System.out.println("Digite la silla que desea ocupar el cliente\n");
+        System.out.println("Digite la silla \n");
         try{
            silla=entrada.readLine().toUpperCase();
          }catch(Exception ex){
@@ -165,15 +135,14 @@ public class Logica {
         return silla;
     }
     /**
-     * @author Victor Pardo
-     * Esta funcion sirve para recoger los datos por consola del usuario que hara la  compra 
-     * devuelve un Integer con la el numero de identificacion de lo comprado.
+     * @author Familia
+     *
      * 
      */
     
-    public Integer recogerUsuario(){
+    public Integer leerUsuario(){
         Integer cedula=0;
-        System.out.println("Digite la identificacion del cliente\n");
+        System.out.println("Digite el ID\n");
         try{
            cedula=Integer.parseInt(entrada.readLine());
          }catch(Exception ex){
@@ -182,95 +151,91 @@ public class Logica {
         return cedula;
     }
     /**
-     * @author Victor Pardo
-     * Esta funcion recibe el codigo de la silla a comprar y el usuario que al que se le asignara la silla
-     * del avion  hay 3 funciones dependiendo del tipo de avion que elija no devuelve nada.
+     * @author Famila
+     * 
      * 
      */
     
-    public void comprarSillaEco(String code,Integer id){
-        if(!clientes.containsKey(id)){
-            System.out.println("No existe el cliente con la identificacion: "+id);
-            menuAviones();
+    public void comprarSillaB(String code,Integer id){
+        if(!personas.containsKey(id)){
+            System.out.println("No existe el ID: "+id);
+            menu();
         }
-        Cliente comprador = clientes.get(id);
-        if(!aeco.getSillas().containsKey(code)){
-            System.out.println("silla no encotrada intente con otra");
-        }if(aeco.getSillas().containsKey(code)){
-            if(!aeco.getSillas().get(code).isComprada()){
-                aeco.getSillas().get(code).setPersona(comprador);
-                aeco.getSillas().get(code).setComprada(true);                
+        Persona comprador = personas.get(id);
+        if(!APq.getSillas().containsKey(code)){
+            System.out.println("silla no encotrada");
+        }if(APq.getSillas().containsKey(code)){
+            if(!APq.getSillas().get(code).isOcupada()){
+                APq.getSillas().get(code).setPersona(comprador);
+                APq.getSillas().get(code).setOcupada(true);                
             }else{                
-                System.out.println("esta silla ya esta ocupada, elija otra");
+                System.out.println("Silla Ocupada");
             }
         }
     }
     /**
-     * @author Victor Pardo
-     * Esta funcion recibe el codigo de la silla a comprar y el usuario que al que se le asignara la silla
-     * del avion  hay 3 funciones dependiendo del tipo de avion que elija no devuelve nada.
+     * @author Failia
+     * 
      * 
      */
     public void comprarSillaVip(String code,Integer id){
-        if(!clientes.containsKey(id)){
-            System.out.println("No existe el cliente con la identificacion: "+id);
-            menuAviones();
+        if(!personas.containsKey(id)){
+            System.out.println("No existe el ID: "+id);
+            menu();
         }
-        Cliente comprador = clientes.get(id);
-        if(!avip.getSillas().containsKey(code)){
-            System.out.println("silla no encotrada intente con otra");
+        Persona comprador = personas.get(id);
+        if(!aVip.getSillas().containsKey(code)){
+            System.out.println("silla no encotrada");
         }
-        if(avip.getSillas().containsKey(code)){
-            if(!avip.getSillas().get(code).isComprada()){
-                avip.getSillas().get(code).setPersona(comprador);
-                avip.getSillas().get(code).setComprada(true);                
+        if(aVip.getSillas().containsKey(code)){
+            if(!aVip.getSillas().get(code).isOcupada()){
+                aVip.getSillas().get(code).setPersona(comprador);
+                aVip.getSillas().get(code).setOcupada(true);                
             }else{                
-                System.out.println("esta silla ya esta ocupada, elija otra");
+                System.out.println("Silla Ocupada");
             }
         }
     }
     /**
-     * @author Victor Pardo
-     * Esta funcion recibe el codigo de la silla a comprar y el usuario que al que se le asignara la silla
-     * del avion  hay 3 funciones dependiendo del tipo de avion que elija no devuelve nada.
+     * @author Famila
+     * 
      * 
      */
-    public void comprarSillaMix(String code,Integer id){
-        if(!clientes.containsKey(id)){
-            System.out.println("No existe el cliente con la identificacion: "+id);
-            menuAviones();
+    public void comprarSillaG(String code,Integer id){
+        if(!personas.containsKey(id)){
+            System.out.println("No existe el ID: "+id);
+            menu();
         }
-        Cliente comprador = clientes.get(id);
-        if(!amix.getSillas().containsKey(code)){
-            System.out.println("silla no encotrada intente con otra");
-        }if(amix.getSillas().containsKey(code)){
-            if(!amix.getSillas().get(code).isComprada()){
-                amix.getSillas().get(code).setPersona(comprador);
-                amix.getSillas().get(code).setComprada(true);                
+        Persona comprador = personas.get(id);
+        if(!aGr.getSillas().containsKey(code)){
+            System.out.println("silla no encotrada");
+        }if(aGr.getSillas().containsKey(code)){
+            if(!aGr.getSillas().get(code).isOcupada()){
+                aGr.getSillas().get(code).setPersona(comprador);
+                aGr.getSillas().get(code).setOcupada(true);                
             }else{                
-                System.out.println("esta silla ya esta ocupada, elija otra");
+                System.out.println("Silla Ocupada");
             }
         }
     }
     /**
-     * @author Victor Pardo
-     * Esta funcion agrega un  nuevo cliente en el mapa que se maneja en la funcion general logica
+     * @author Familia
+     *
      * 
      */
-    public void agregarClientes(){
-        System.out.println("Digite la informacion para agregar el cliente");
-        System.out.println("Digite el nombre del cliente");
+    public void agregarPasajeros(){
+        System.out.println("agregar el Pasajeros");
         String nombre="";
         int cedula=0;
         String fecha="";
         
-        System.out.println("digite nombre");
+        System.out.println("digite el nombre");
         try {
             nombre = (entrada.readLine());
         } catch (IOException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Digite la cedula del cliente");
+        System.out.println("Digite el ID");
         try {
             cedula = (Integer.parseInt(entrada.readLine()));
         } catch (IOException ex) {
@@ -283,14 +248,14 @@ public class Logica {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
         SimpleDateFormat fecha1=new SimpleDateFormat(fecha);
-        Cliente nuevo=new Cliente(nombre,cedula,fecha1);
-        clientes.put(cedula, nuevo);
+        Persona nuevo=new Persona(nombre,cedula,fecha1);
+        personas.put(cedula, nuevo);
     }
 
-    private void imprimirAvionMixto() {
+    private void imprimirAvionG() {
         
-        Map<String, Silla> treeMap = new TreeMap<String, Silla>(amix.getSillas());
-        Set<String> llaves = treeMap.keySet();
+        Map<String, Silla> mapaO = new TreeMap<String, Silla>(aGr.getSillas());
+        Set<String> llaves = mapaO.keySet();
         System.out.println("                   /\\");
         System.out.println("                  /  \\");
         System.out.println("                 /    \\");
@@ -302,14 +267,14 @@ public class Logica {
         System.out.println("            |               |");
         
         for(String llav : llaves){
-            if(treeMap.get(llav).isComprada()){
-                treeMap.get(llav).setNombre("XX");
+            if(mapaO.get(llav).isOcupada()){
+                mapaO.get(llav).setNombre("//");
             }
         }
         
         for(String llav : llaves){
-            if(treeMap.get(llav).isVip()){
-                puesto+=treeMap.get(llav).getNombre()+"       ";
+            if(mapaO.get(llav).isVip()){
+                puesto+=mapaO.get(llav).getNombre()+"       ";
                 System.out.print(puesto);
                 i++;
                 if(i==1){
@@ -328,11 +293,11 @@ public class Logica {
         System.out.println("/           |               |           \\");
         System.out.println("\\___________|               |___________/");
         for(String llav : llaves){
-            if(treeMap.get(llav).isVip()){
+            if(mapaO.get(llav).isVip()){
                 
             }
             else{
-                puesto+=treeMap.get(llav).getNombre();
+                puesto+=mapaO.get(llav).getNombre();
                 System.out.print(puesto);
                 i++;
                 puesto="";
@@ -352,8 +317,8 @@ public class Logica {
     }
 
     private void imprimirAvionVip() {
-         Map<String, Silla> treeMap = new TreeMap<String, Silla>(avip.getSillas());
-        Set<String> llaves = treeMap.keySet();
+         Map<String, Silla> mapaO = new TreeMap<String, Silla>(aVip.getSillas());
+        Set<String> llaves = mapaO.keySet();
         System.out.println("                   /\\");
         System.out.println("                  /  \\");
         System.out.println("                 /    \\");
@@ -367,14 +332,14 @@ public class Logica {
         System.out.println("/           |               |           \\");
         System.out.println("\\___________|               |___________/");
         for(String llav : llaves){
-            if(treeMap.get(llav).isComprada()){
-                treeMap.get(llav).setNombre("XX");
+            if(mapaO.get(llav).isOcupada()){
+                mapaO.get(llav).setNombre("//");
             }
         }
         
         for(String llav : llaves){
-            if(treeMap.get(llav).isVip()){
-                puesto+=treeMap.get(llav).getNombre()+"       ";
+            if(mapaO.get(llav).isVip()){
+                puesto+=mapaO.get(llav).getNombre()+"       ";
                 System.out.print(puesto);
                 i++;
                 if(i==1){
@@ -392,32 +357,32 @@ public class Logica {
         System.out.println("            |               |");
     }
 
-    private void imprimirAvionEco() {
-      Map<String, Silla> treeMap = new TreeMap<String, Silla>(aeco.getSillas());
-        Set<String> llaves = treeMap.keySet();
+    private void imprimirAvionB() {
+      Map<String, Silla> mapaO = new TreeMap<String, Silla>(APq.getSillas());
+        Set<String> llaves = mapaO.keySet();
         System.out.println("                   /\\");
         System.out.println("                  /  \\");
         System.out.println("                 /    \\");
         System.out.println("                /      \\");
         System.out.println("               /        \\");
         System.out.println("              /          \\");
-        System.out.println("             /  Airline   \\");
+        System.out.println("             /            \\");
         System.out.println("            /______________\\");
         System.out.println("            |               |");
         System.out.println(" ___________|               |___________");
         System.out.println("/           |               |           \\");
         System.out.println("\\___________|               |___________/");
         for(String llav : llaves){
-            if(treeMap.get(llav).isComprada()){
-                treeMap.get(llav).setNombre("XX");
+            if(mapaO.get(llav).isOcupada()){
+                mapaO.get(llav).setNombre("//");
             }
         }
         for(String llav : llaves){
-            if(treeMap.get(llav).isVip()){
+            if(mapaO.get(llav).isVip()){
                 
             }
             else{
-                puesto+=treeMap.get(llav).getNombre();
+                puesto+=mapaO.get(llav).getNombre();
                 System.out.print(puesto);
                 i++;
                 puesto="";
@@ -433,5 +398,55 @@ public class Logica {
         }
          System.out.println("\n            |               |");
         System.out.println("            |               |");
+    }
+
+    private void menuDespegados() {
+        System.out.print("Que avion a despegar?\n"+"Avion Vip 1.\n"
+            + "Avion Grande 2.\n"
+            + "Avion Pequeño 3.\n"
+            + "Salir 0.\n");
+        try{
+    int opcion=Integer.parseInt(entrada.readLine());
+    switch(opcion){
+       case 1:
+           if(aVip.isDespegado()){
+           System.out.println("Este avion ya despego");
+           }else{
+            System.out.println("Ganancias vip\n"+aVip.calcularVuelo()+"\n");
+            aVip.setDespegado(true);
+            menu();
+           }
+            break;
+        case 2:
+            if(aGr.isDespegado()){
+             System.out.println("Este avion ya despego");
+            } else{
+            System.out.println("Ganancias Grande\n"+aGr.calcularVuelo()+"\n");
+            aGr.setDespegado(true);
+            menu();
+            }
+            break;
+        case 3:
+            if(APq.isDespegado()){
+             System.out.println("Este avion ya despego");
+            }else{
+            System.out.println("Ganancias Pequeño\n"+APq.calcularVuelo()+"\n");
+            APq.setDespegado(true);
+            menu();
+            }
+            break;
+        case 0:
+            menu();
+            break;
+        default:
+             System.out.println("Opcion incorrecta");
+             menuDespegados();
+             break;
+    }
+     }
+    catch(Exception ex){
+            System.out.println("Escriba un numero");
+            menuDespegados();
+            }
     }
 }

@@ -7,24 +7,16 @@ package Utilitarios;
 
 /**
  *
- * @author fetec
+ * @author Familia
  */
-public class AvionEco extends Avion{
+public class AvionG extends Avion {
     
-    public AvionEco(String nombre) {
+    public AvionG(String nombre) {
         super(nombre);
-        sillas.put("A1", new Silla("A1",false));
-        sillas.put("A2", new Silla("A2",false));
-        sillas.put("A3", new Silla("A3",false));
-        sillas.put("A4", new Silla("A4",false));
-        sillas.put("A5", new Silla("A5",false));
-        sillas.put("A6", new Silla("A6",false));
-        sillas.put("B1", new Silla("B1",false));
-        sillas.put("B2", new Silla("B2",false));
-        sillas.put("B3", new Silla("B3",false));
-        sillas.put("B4", new Silla("B4",false));
-        sillas.put("B5", new Silla("B5",false));
-        sillas.put("B6", new Silla("B6",false));
+        sillas.put("A1", new Silla("A1",true));
+        sillas.put("A2", new Silla("A2",true));
+        sillas.put("B1", new Silla("B1",true));
+        sillas.put("B2", new Silla("B2",true));
         sillas.put("C1", new Silla("C1",false));
         sillas.put("C2", new Silla("C2",false));
         sillas.put("C3", new Silla("C3",false));

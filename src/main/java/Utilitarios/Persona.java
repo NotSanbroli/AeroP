@@ -10,17 +10,17 @@ import java.util.Date;
 
 /**
  *
- * @author Darkgrey93
+ * @author Familia
  */
-public class Cliente {
+public class Persona {
     private String nombre;
-    private Integer cedula;
-    private SimpleDateFormat  fechaNacimiento;
+    private Integer id;
+    private SimpleDateFormat  fechaN;
 
-    public Cliente(String nombre, int cedula, SimpleDateFormat  fechaNacimiento) {
+    public Persona(String nombre, int cedula, SimpleDateFormat  fechaNacimiento) {
         this.nombre = nombre;
-        this.cedula = cedula;
-        this.fechaNacimiento = fechaNacimiento;
+        this.id = cedula;
+        this.fechaN = fechaNacimiento;
     }
 
     public String getNombre() {
@@ -32,7 +32,7 @@ public class Cliente {
     }
 
     public int getCedula() {
-        return cedula;
+        return id;
     }
 
 }
