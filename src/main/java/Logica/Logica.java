@@ -68,8 +68,10 @@ public class Logica {
     System.out.print("Que avion desea comprar?\n"+"Avion Vip 1.\n"
             + "Avion Mixto 2.\n"
             + "Avion Economico 3.\n"
-            +"Despegar aviones 4.\n"
-            + "Agregar cliente 5.\n"
+            +"Despegar avion vip 4.\n"
+            + "Despegar avion mixto 5.\n"
+            + "Despegar avion economico 6.\n"
+            + "Agregar cliente 7.\n"
             + "Salir 0.\n");
     Integer cedula=0;
     String silla="";
@@ -77,33 +79,54 @@ public class Logica {
     int opcion=Integer.parseInt(entrada.readLine());
     switch(opcion){
         case 1:
-            imprimirAvionVip();
-            cedula=recogerUsuario();
-            silla=recogerSilla();
-            comprarSillaVip(silla, cedula);
+            if(!avip.isVolando()==true){
+                imprimirAvionVip();
+                cedula=recogerUsuario();
+                silla=recogerSilla();
+                comprarSillaVip(silla, cedula);
+            }else{
+                System.out.println("lo sentimos avion en vuelo");
+            }
             menuAviones();
             break;
         case 2:
-            imprimirAvionMixto();
-            cedula=recogerUsuario();
-            silla=recogerSilla();
-            comprarSillaMix(silla, cedula);
+            if(!amix.isVolando()==true){
+                imprimirAvionMixto();
+                cedula=recogerUsuario();
+                silla=recogerSilla();
+                comprarSillaMix(silla, cedula);
+            }else{
+                System.out.println("lo sentimos avion en vuelo");
+            }
             menuAviones();
             break;
         case 3:
-            imprimirAvionEco();
-            cedula=recogerUsuario();
-            silla=recogerSilla();
-            comprarSillaEco(silla, cedula);
+            if(!aeco.isVolando()==true){
+                imprimirAvionEco();
+                cedula=recogerUsuario();
+                silla=recogerSilla();
+                comprarSillaEco(silla, cedula);
+            }else{
+                System.out.println("lo sentimos avion en vuelo");
+            }
             menuAviones();
             break;
         case 4:
             System.out.println("avion vip vendio\n"+avip.calcularVuelo()+"\n");
-            System.out.println("avion mixto vendio\n"+amix.calcularVuelo()+"\n");
-            System.out.println("avion economico vendio\n"+aeco.calcularVuelo()+"\n");
-            System.exit(0);
+            avip.setVolando(true);
+            menuAviones();
             break;
         case 5:
+            System.out.println("avion mixto vendio\n"+amix.calcularVuelo()+"\n");
+            amix.setVolando(true);
+            menuAviones();
+            break;
+        case 6:
+            System.out.println("avion economico vendio\n"+aeco.calcularVuelo()+"\n");
+            aeco.setVolando(true);
+            menuAviones();
+            break;
+        case 7:
             agregarClientes();
             menuAviones();
             break;
