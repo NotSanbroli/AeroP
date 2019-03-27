@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.aerolinea;
+package com.mycompany.aeropuerto;
 
 
 import Logica.Logica;
@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  *
- * @author Darkgrey93
+ * @author Familia
  */
 public class Main {
 
@@ -19,6 +19,6 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-   Logica log = new Logica();
+   Logica logos = new Logica();
     }
 }
